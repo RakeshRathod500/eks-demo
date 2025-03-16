@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY')
-        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_KEY')
+        AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/your-repo/terraform-eks.git'
+                git branch: 'main', url: 'https://github.com/RakeshRathod500/eks-demo.git'
             }
         }
 
