@@ -1,16 +1,15 @@
-
 pipeline {
     agent any
 
     environment {
-        AWS_ACCESS_KEY_ID = credentials('aws-access-key-id') // Replace with your Jenkins credential ID
-        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key') // Replace with your Jenkins credential ID
+        AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/RakeshRathod500/eks-demo.git' // Replace with your repo URL
+                git branch: 'main', url: 'https://github.com/RakeshRathod500/eks-demo.git'
             }
         }
 
@@ -42,7 +41,6 @@ pipeline {
         stage('Terraform Destroy') {
             steps {
                 input message: 'Do you want to destroy the Terraform infrastructure?'
-                bat 'terraform destroy -target=module.ec2.aws_instance.server -auto-approve'
                 bat 'terraform destroy -auto-approve'
             }
         }
